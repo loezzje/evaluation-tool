@@ -8,7 +8,13 @@ import registerServiceWorker from './registerServiceWorker';
 
 ReactDOM.render(
   // <Provider store={store}>
+  // <Router history={history}>
+  // <Route path="/" component={App}>
+  // <IndexRoute component={BatchesContainer} />
+  // <Route path="/batches/:batchId" component={batchPage} />
     <App />,
+    // </Route>
+    // </Router>
   // </Provider>,
   document.getElementById('root')
 );
