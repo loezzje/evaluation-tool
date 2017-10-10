@@ -1,8 +1,11 @@
+// const { authenticate } = require('feathers-authentication').hooks;
+// const {  restrictToAuthenticated } = require('feathers-authentication-hooks');
+
 
 
 module.exports = {
   before: {
-    all: [],
+    // all: [authenticate('jwt'), restrictToAuthenticated()],
     find: [],
     get: [],
     create: [],
