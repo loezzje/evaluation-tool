@@ -11,12 +11,11 @@ module.exports = function (app) {
     studentName: { type: String },
   });
 
-  const batches = new Schema({
-    text: { type: String, required: true },
+  const batches = new Schema({    
     createdAt: { type: Date, default: Date.now },
     updatedAt: { type: Date, default: Date.now },
-    name: { type: String },
-    students: [studentSchema],
+    name: { type: String , default: 'not yet named'},
+    students: [studentSchema]
   });
 
   return mongooseClient.model('batches', batches);
