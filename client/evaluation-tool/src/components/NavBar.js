@@ -15,17 +15,12 @@ export class Navigation extends PureComponent {
   }
 
   render() {
-    const { signedIn } = this.props
+    // const { signedIn } = this.props
     return (
       <nav className="navigation">
         <ul>
           <li><Link to="/">Home</Link></li>
-          <li>
-            { signedIn ?
-              <a href="#" onClick={this.signOut.bind(this)}>Sign out</a> :
-              <Link to="/sign-up">Sign up</Link>
-            }
-          </li>
+(// removed the link to sign out)
         </ul>
       </nav>
     )

@@ -46,8 +46,8 @@ export class SignUp extends PureComponent {
 
   validateEmail() {
     const { email } = this.refs
-
-    if (email.value.match(/^[a-z0-9.\_-]+@[a-z0-9.\_-]+\.[a-z0-9.\_-]+$/)) {
+// possibly messed up this part
+    if (email.value.match(/^[a-z0-9._-]+@[a-z0-9._-]+\.[a-z0-9._-]+$/)) {
       this.setState({
         emailError: null
       })
@@ -68,7 +68,7 @@ export class SignUp extends PureComponent {
   }
 
   validatePassword() {
-    const { password, passwordConfirmation } = this.refs
+    const { password } = this.refs
 
     if (password.value.length < 6) {
       this.setState({
