@@ -9,7 +9,7 @@ module.exports = function (app) {
 
   const evalutationSchema = new Schema({
     date: { type: Date, default: Date.now },
-    color: { type: String, default: 'green'},
+    color: { type: String, required: true },
     remark: { type: String }
   });
 
