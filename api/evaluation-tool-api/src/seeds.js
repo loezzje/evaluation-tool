@@ -5,16 +5,34 @@ const hooks = require('feathers-hooks');
 const auth = require('feathers-authentication-client');
 
 const user = {
-  name: 'Marloes',
-  email: 'marloesje@seeds.nl',
+  name: 'Marloesje2',
+  email: 'marloes2@seeds.nl',
   password: 'abc123'
 };
 
 const batches = [{
-  name: 'first batch'
+  name: 'first batch',
+  students: [{
+    studentName: 'Arno',
+    evaluations: [{
+      date: '01-01-2017',
+      color: 'green'
+    }, {
+      date: '02-01-2017',
+      color: 'green'
+    }]
+  }, {
+    studentName: 'Wouter',
+    evaluations: [{
+      date: '01-01-2017',
+      color: 'yellow'
+    }]
+  }],
 },
 {name: 'second batch'}
 ];
+
+
 
 const feathersClient = feathers();
 
