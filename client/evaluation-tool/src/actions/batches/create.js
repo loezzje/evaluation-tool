@@ -11,7 +11,7 @@ export default (batch) => {
 
     const backend = api.service('batches')
 
-    api.authenticate()
+    api.app.authenticate()
       .then(() => {
         backend.create(batch)
           .then((result) => {
