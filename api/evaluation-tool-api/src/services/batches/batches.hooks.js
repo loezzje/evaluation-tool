@@ -1,3 +1,6 @@
+const { authenticate } = require('feathers-authentication').hooks;
+const { associateCurrentUser, restrictToAuthenticated } = require('feathers-authentication-hooks');
+
 
 
 module.exports = {
@@ -5,7 +8,8 @@ module.exports = {
     all: [],
     find: [],
     get: [],
-    create: [],
+    create: [ authenticate('jwt'),
+      restrictToAuthenticated(), associateCurrentUser() ],
     update: [],
     patch: [],
     remove: []

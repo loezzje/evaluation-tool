@@ -1,21 +1,29 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-// import { Provider } from 'react-redux'
-// import store from './store'
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { Provider } from 'react-redux'
+import { Router, Route, IndexRoute } from 'react-router'
+import store, { history } from './store'
+import registerServiceWorker from './registerServiceWorker'
+
 import App from './App';
-import registerServiceWorker from './registerServiceWorker';
+import BatchesContainer from './components/batches/BatchesContainer'
+import BatchPage from './components/batches/BatchPage'
+import SignIn from './components/users/SignIn'
+import SignUp from './components/users/SignUp'
+
 
 ReactDOM.render(
-  // <Provider store={store}>
-  // <Router history={history}>
-  // <Route path="/" component={App}>
-  // <IndexRoute component={BatchesContainer} />
-  // <Route path="/batches/:batchId" component={batchPage} />
-    <App />,
-    // </Route>
-    // </Router>
-  // </Provider>,
+  <Provider store={store}>
+  <Router history={history}>
+  <Route path="/" component={App}>
+  <IndexRoute component={BatchesContainer} />
+  <Route path="/batches/:batchId" component={BatchPage} />
+  <Route path="sign-up" component={SignUp} />
+  <Route path="sign-in" component={SignIn} />
+
+    </Route>
+    </Router>
+  </Provider>,
   document.getElementById('root')
 );
 registerServiceWorker();
