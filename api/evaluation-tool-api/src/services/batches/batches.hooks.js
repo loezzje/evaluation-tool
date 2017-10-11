@@ -1,5 +1,5 @@
 const { authenticate } = require('feathers-authentication').hooks;
-const { associateCurrentUser, restrictToAuthenticated } = require('feathers-authentication-hooks');
+const createBatch = require('../../hooks/create-batch');
 
 
 
@@ -8,11 +8,12 @@ module.exports = {
     all: [],
     find: [],
     get: [],
-    create: [ authenticate('jwt'),
-      restrictToAuthenticated(), associateCurrentUser() ],
+    create: [
+      createBatch()
+    ],
     update: [],
     patch: [],
-    remove: []
+    remove: [authenticate('jwt')]
   },
 
   after: {
