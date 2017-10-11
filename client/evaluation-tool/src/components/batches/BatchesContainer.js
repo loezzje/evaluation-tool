@@ -1,14 +1,17 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import { Link } from 'react-router';
 import fetchBatches from '../../actions/batches/fetch'
 import BatchItem from './BatchItem'
+
 
 export class BatchesContainer extends PureComponent {
 
   static propTypes = {
     batches: PropTypes.array.isRequired,
-    fetchBatches: PropTypes.func.isRequired
+    fetchBatches: PropTypes.func.isRequired,
+    currentUser: PropTypes.string.isRequired
   }
 
   componentWillMount() {
@@ -21,6 +24,9 @@ export class BatchesContainer extends PureComponent {
   }
 
   render(batch, index) {
+    if (this.props.currentUser === null) {
+      return <h1>Sorry, you do not have access to this page, please <Link to={'/sign-in'}>Sign in</Link></h1>
+    }
     return(
       <div classname="batch wrapper">
         <main>
@@ -32,6 +38,6 @@ export class BatchesContainer extends PureComponent {
   }
 }
 
-const mapStateToProps = ({ batches }) => ({ batches })
+const mapStateToProps = ({ batches, currentUser }) => ({ batches, currentUser })
 const mapDispatchToProps = { fetchBatches }
 export default connect(mapStateToProps, mapDispatchToProps)(BatchesContainer)
