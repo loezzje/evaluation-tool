@@ -22,15 +22,14 @@ injectTapEventPlugin();
 ReactDOM.render(
   <Provider store={store}>
   <Router history={history}>
+  <Route path="sign-in" component={SignIn} />
   <Route path="/" component={App}>
   <IndexRoute component={BatchesContainer} />
   <Route path="/batches/:batchId" component={BatchPage} />
   <Route path="sign-up" component={SignUp} />
-  <Route path="sign-in" component={SignIn} />
   <Route path="new-batch" component={NewBatchForm} />
-
-    </Route>
-    </Router>
+  </Route>
+  </Router>
   </Provider>,
   document.getElementById('root')
 );

@@ -24,8 +24,8 @@ module.exports = function (app) {
     updatedAt: { type: Date, default: Date.now },
     name: { type: String , default: 'not yet named'},
     students: [studentSchema],
-    startsAt: { type: String, default: Date.now },
-    endsAt: { type: String, default: Date.now },
+    startsAt: { type: Date, default: Date.now },
+    endsAt: { type: Date, default: Date.now },
   });
 
   return mongooseClient.model('batches', batches);
