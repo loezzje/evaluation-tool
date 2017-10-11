@@ -55,7 +55,9 @@ export class NewBatchForm extends PureComponent {
       endsAt,
     }
 
+
     this.props.save(batch)
+
 
 }
 
@@ -95,5 +97,7 @@ export class NewBatchForm extends PureComponent {
 }
 
 const mapStateToProps = ({ currentUser }) => ({ currentUser })
+
 const mapDispatchToProps = { save: createBatch }
+
 export default connect(mapStateToProps, mapDispatchToProps)(NewBatchForm)
