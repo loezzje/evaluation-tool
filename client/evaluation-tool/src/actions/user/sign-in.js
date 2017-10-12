@@ -12,7 +12,7 @@ export default (user) => {
   return (dispatch) => {
     dispatch(loading(true))
 
-    api.authenticate(user)
+    api.app.authenticate(user)
       .then((result) => {
         dispatch(loadSuccess())
         dispatch(loading(false))
