@@ -1,11 +1,18 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import { Link } from 'react-router'
+
 import fetchBatches from '../../actions/batches/fetch'
 import {GridList, GridTile} from 'material-ui/GridList';
 import IconButton from 'material-ui/IconButton';
 import Subheader from 'material-ui/Subheader';
 import StarBorder from 'material-ui/svg-icons/toggle/star-border';
+import RaisedButton from 'material-ui/RaisedButton';
+
+const style = {
+  margin: 12,
+};
 
 const styles = {
   root: {
@@ -20,7 +27,6 @@ const styles = {
   },
 };
 
-
 class BatchesItem extends PureComponent {
   static propTypes = {
     name: PropTypes.string,
@@ -31,32 +37,53 @@ class BatchesItem extends PureComponent {
   }
 
 
+   getRandomStudentId(students) {
+    var random = Math.random() * 100;
+    var get_color_group =  students.filter(function(student){
+        if (random <= 17) {return student.evaluations.slice(-1)[0].color === "green" };
+        if (random > 17 && random <= 50) {return student.evaluations.slice(-1)[0].color === "yellow" };
+        if (random > 50) {return student.evaluations.slice(-1)[0].color === "red" };
+      return get_color_group} );
+    return (get_color_group[Math.floor(Math.random() * get_color_group.length)]._id);
+    }
 
   render() {
-    const { name, students } = this.props
+    const { name, students, _id } = this.props
     if (!name) return null
+    const randomStudentId = this.getRandomStudentId(students)
 
     return(
-      <div style={styles.root}>
-        <GridList
-          cellHeight={180}
-          style={styles.gridList}
-        >
-          <Subheader>{ name }</Subheader>
-          {students.map((student) => (
+      <div>
+        <div style={styles.root}>
+          <GridList
+            cellHeight={180}
+            style={styles.gridList}
+          >
+            <Subheader>{ name }</Subheader>
+            {students.map((student) => (
             <GridTile
               key={student.photo}
               title={student.studentName}
-              subtitle={<span>by <b>{student.evaluations.slice(-1)[0].color}</b></span>}
+              subtitle={<span><b>{student.evaluations.slice(-1)[0].color}</b></span>}
               actionIcon={<IconButton><StarBorder color="white" /></IconButton>}>
               >
-            <img src={student.photo} width="200" height="200" alt='the student' />
+              <Link to={`/batches/${_id}/students/${student._id}`}>
+                <img src={student.photo} width="200" height="200" alt='the student' />
+              </Link>
             </GridTile>
-          ))}
-        </GridList>
+            ))}
+          </GridList>
+        </div>
+        <div>
+        <Link to={`/batches/${_id}/students/${randomStudentId}`}>
+          <RaisedButton
+            label="Random Student"
+            primary={true}
+            style={style}
+            />
+            </Link>
+        </div>
       </div>
-
-
     )
   }
 }
@@ -73,5 +100,4 @@ const mapStateToProps = ({ batches }, { params }) => {
     ...batch
   }
 }
-
-export default connect(mapStateToProps, {fetchBatches}) (BatchesItem)
+export default connect(mapStateToProps, {fetchBatches }) (BatchesItem)
