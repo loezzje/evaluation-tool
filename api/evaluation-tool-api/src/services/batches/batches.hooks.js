@@ -1,18 +1,14 @@
-// const { authenticate } = require('feathers-authentication').hooks;
+const { authenticate } = require('feathers-authentication').hooks;
 // const { restrictToAuthenticated } = require('feathers-authentication-hooks');
-// const createBatch = require('../../hooks/create-batch');
-//
-// const restrict = [
-//   authenticate('jwt'),
-//   restrictToAuthenticated(),
-// ];
+const createBatch = require('../../hooks/create-batch');
+
 
 module.exports = {
   before: {
-    all: [],
+    all: [authenticate('jwt')],
     find: [],
     get: [],
-    create: [ ],
+    create: [createBatch()],
     update: [],
     patch: [],
     remove: []
