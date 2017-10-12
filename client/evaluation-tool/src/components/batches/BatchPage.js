@@ -28,12 +28,11 @@ const styles = {
 };
 
 class BatchesItem extends PureComponent {
-  static propTypes = {
-    name: PropTypes.string,
-  }
 
   componentWillMount() {
-    this.props.fetchBatches()
+    const { fetchBatches } = this.props
+    fetchBatches()
+    // this.props.fetchBatches()
   }
 
 
@@ -100,4 +99,4 @@ const mapStateToProps = ({ batches }, { params }) => {
     ...batch
   }
 }
-export default connect(mapStateToProps, {fetchBatches }) (BatchesItem)
+export default connect(mapStateToProps, { fetchBatches }) (BatchesItem)

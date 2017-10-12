@@ -7,22 +7,11 @@ import { Link } from 'react-router';
 import FlatButton from 'material-ui/FlatButton';
 
 
-export class NewBatchForm extends PureComponent {
+export class NewStudentForm extends PureComponent {
 
   static propTypes = {
     currentUser: PropTypes.string.isRequired,
   }
-  //
-  // constructor(props) {
-  //   super(props)
-  //
-  //
-  //   this.state = {
-  //     name,
-  //     startsAt,
-  //     endsAt,
-  //   }
-  // }
 
   updateName(event) {
     this.setState({
@@ -56,12 +45,12 @@ export class NewBatchForm extends PureComponent {
     }
 
     this.props.save(batch)
+
 }
 
+
   render(){
-    if (this.props.currentUser === null) {
-      return <h1>Sorry, you do not have access to this page, please <Link to={'/sign-in'}>Sign in</Link></h1>
-    }
+
     return(
     <div className='CreateBatch'>
       <h2>Name of the next Batch</h2>
@@ -94,4 +83,4 @@ export class NewBatchForm extends PureComponent {
 
 const mapStateToProps = ({ currentUser }) => ({ currentUser })
 const mapDispatchToProps = { save: createBatch }
-export default connect(mapStateToProps, mapDispatchToProps)(NewBatchForm)
+export default connect(mapStateToProps, mapDispatchToProps)(NewStudentForm)
