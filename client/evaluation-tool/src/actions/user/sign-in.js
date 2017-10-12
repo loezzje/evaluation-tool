@@ -10,15 +10,17 @@ const api = new API()
 
 export default (user) => {
   return (dispatch) => {
+    debugger
     dispatch(loading(true))
 
-    api.app.authenticate(user)
-      .then((result) => {
+    api.signIn(user)
+      .then((user) => {
         dispatch(loadSuccess())
         dispatch(loading(false))
+        api.app.set('user', user)
         dispatch({
           type: USER_SIGNED_IN,
-          payload: result
+          payload: user
         })
         history.push('/')
       })
