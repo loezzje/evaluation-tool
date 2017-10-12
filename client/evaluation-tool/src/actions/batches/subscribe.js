@@ -10,10 +10,7 @@ const batches = api.service('batches')
 export default () => {
   return (dispatch, getState) => {
     if (getState().subscriptions.includes('batches')) return
-
     batches.on('created', (batch) => { dispatch(createdBatch(batch)) })
-
-
     dispatch({ type: SUBSCRIBED_TO_BATCHES_SERVICE })
   }
 }

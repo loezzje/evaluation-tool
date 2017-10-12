@@ -1,52 +1,33 @@
 import React, { PureComponent } from 'react'
-import PropTypes from 'prop-types'
+
 import { connect } from 'react-redux'
 import fetchBatches from '../../actions/batches/fetch'
 import {Card, CardActions, CardHeader, CardTitle, CardText} from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 
 
-
 class StudentPage extends PureComponent {
 
-  static propTypes = {
-    name: PropTypes.string,
-    students: PropTypes.array,
-    params: PropTypes.array
-  }
-  // componentWillMount() {
-  //   this.props.fetchBatches()
-  // }
-
-  currentStudent() {
-    var student = this.props.students.filter(function(student) {
-      return student._id === this.props.params.studentId
-    })
+  componentWillMount() {
+    const { fetchBatches } = this.props
+    fetchBatches()
   }
 
   render() {
-    const { name, student } = this.props
+    const { studentName, photo, evaluations } = this.props
 
-
-    //
-    // const student = students.filter(function(student) {
-    //   return student._id === params.studentId
-    // })
-    if (!name) return null
+    if (!studentName) return null
 
     return(
       <Card>
         <CardHeader
           title="URL Avatar"
           subtitle="Subtitle"
-          avatar={name}
+          avatar={photo}
         />
-        <CardTitle title={student.studentName} subtitle="empty for now" />
+        <CardTitle title={studentName} subtitle={evaluations.slice(-1)[0].color} />
         <CardText>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          Donec mattis pretium massa. Aliquam erat volutpat. Nulla facilisi.
-          Donec vulputate interdum sollicitudin. Nunc lacinia auctor quam sed pellentesque.
-          Aliquam dui mauris, mattis quis lacus id, pellentesque lobortis odio.
+
         </CardText>
         <CardActions>
           <FlatButton label="Action1" />
@@ -59,21 +40,14 @@ class StudentPage extends PureComponent {
   }
 }
 
-const mapStateToProps = ({ batches }, { params }) => {
-    const batch = batches.reduce((prev, next) => {
-    if (next._id === params.batchId) {
-      return next
-    }
-    return prev
-  }, {params})
-  // const student = batch.students.filter(function(student) {
-  //   return student._id === params.studentId
-  // })
-
+const mapStateToProps = ({ batches}, {params }) => {
+  const batch = batches.filter((batch) => (batch._id === params.batchId))[0]
+  const student = batch && batch.students.filter((student) => (student._id === params.studentId))[0]
   return {
     ...batch,
-    params
+    ...student
   }
+
 }
 
 export default connect(mapStateToProps, {fetchBatches}) (StudentPage)
