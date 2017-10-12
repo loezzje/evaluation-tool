@@ -1,3 +1,5 @@
+// src/api/index.js
+
 import client from './client'
 
 // API Client
