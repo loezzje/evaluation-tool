@@ -10,7 +10,6 @@ export class BatchesContainer extends PureComponent {
   static propTypes = {
     batches: PropTypes.array.isRequired,
     fetchBatches: PropTypes.func.isRequired,
-    currentUser: PropTypes.string.isRequired
   }
 
   componentWillMount() {
@@ -25,7 +24,7 @@ export class BatchesContainer extends PureComponent {
   render(batch, index) {
 
     return(
-      <div classname="batch wrapper">
+      <div className="batch wrapper">
         <main>
           {this.props.batches.map(this.renderBatches.bind(this))}
       </main>
