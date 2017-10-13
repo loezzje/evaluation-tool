@@ -10,8 +10,7 @@ const api = new API()
 
 export default (user) => {
   return (dispatch) => {
-    debugger
-    dispatch(loading(true))
+      dispatch(loading(true))
 
     api.signIn(user)
       .then((user) => {

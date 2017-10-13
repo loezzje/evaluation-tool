@@ -1,17 +1,13 @@
 import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import TextField from 'material-ui/TextField';
-import createBatch from '../../actions/batches/create'
+import createStudent from '../../actions/batches/create'
 import { Link } from 'react-router';
 import FlatButton from 'material-ui/FlatButton';
 
 
 export class NewStudentForm extends PureComponent {
 
-  static propTypes = {
-    currentUser: PropTypes.string.isRequired,
-  }
 
   updateName(event) {
     this.setState({
@@ -19,32 +15,24 @@ export class NewStudentForm extends PureComponent {
     })
   }
 
-  updateStartsAt(event) {
+  updatePhoto(event) {
     this.setState({
-      startsAt: event.target.value
-    })
-  }
-
-  updateEndsAt(event) {
-    this.setState({
-      endsAt: event.target.value
+      photo: event.target.value
     })
   }
 
   saveBatch() {
       const {
       name,
-      startsAt,
-      endsAt,
+      photo,
     } = this.state
 
-    const batch = {
+    const student = {
       name,
-      startsAt,
-      endsAt,
+      photo
     }
 
-    this.props.save(batch)
+    this.props.save(student)
 
 }
 
@@ -52,26 +40,19 @@ export class NewStudentForm extends PureComponent {
   render(){
 
     return(
-    <div className='CreateBatch'>
-      <h2>Name of the next Batch</h2>
+    <div className='CreateStudent'>
+      <h2>Name of the Student</h2>
       <br />
       <TextField
         hintText="eg Batch #1."
         onChange={this.updateName.bind(this)}
         />
       <br />
-      <h2>Start Date</h2>
+      <h2>Photo</h2>
       <br />
       <TextField
-        hintText="eg 01-01-2017"
+        hintText="post the link to the photo here"
         onChange={this.updateStartsAt.bind(this)}
-        />
-      <br />
-      <h2>End Date</h2>
-      <br />
-      <TextField
-        hintText="ag 01-01-2017"
-        onChange={this.updateEndsAt.bind(this)}
         />
       <br />
       <FlatButton label="Save"
@@ -81,6 +62,5 @@ export class NewStudentForm extends PureComponent {
   )}
 }
 
-const mapStateToProps = ({ currentUser }) => ({ currentUser })
-const mapDispatchToProps = { save: createBatch }
-export default connect(mapStateToProps, mapDispatchToProps)(NewStudentForm)
+const mapDispatchToProps = { save: createStudent }
+export default connect(null, mapDispatchToProps)(NewStudentForm)
