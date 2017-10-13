@@ -3,6 +3,9 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
 import signOut from '../actions/user/sign-out'
+import FlatButton from 'material-ui/FlatButton';
+
+
 
 export class Navigation extends PureComponent {
   static propTypes = {
@@ -18,15 +21,14 @@ export class Navigation extends PureComponent {
     const { signedIn } = this.props
     return (
       <nav className="navigation">
-        <ul>
-          <li><Link to="/">Home</Link></li>
-          <li>
+      <Link to="/"><FlatButton label="Home" primary={true} /></Link>
+
             { signedIn ?
-              <a href="#" onClick={this.signOut.bind(this)}>Sign out</a> :
-              <Link to={'/sign-in'}>Sign in</Link>
+              <a href="#" onClick={this.signOut.bind(this)}><FlatButton label="Sign out" primary={true} /></a> :
+              <Link to={'/sign-in'}><FlatButton label="Sign in" primary={true} /></Link>
             }
-          </li>        
-        </ul>
+
+
       </nav>
     )
   }

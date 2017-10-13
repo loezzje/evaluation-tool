@@ -3,6 +3,9 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import fetchBatches from '../../actions/batches/fetch'
 import BatchItem from './BatchItem'
+import RaisedButton from 'material-ui/RaisedButton';
+import style from './BatchesContainer.sass'
+import { Link } from 'react-router'
 
 
 export class BatchesContainer extends PureComponent {
@@ -28,7 +31,9 @@ export class BatchesContainer extends PureComponent {
         <main>
           {this.props.batches.map(this.renderBatches.bind(this))}
       </main>
-      <h1>Displaying a list of batches</h1>
+      <Link to={`/new-batch`}>
+       <RaisedButton label="Create new Batch" primary={true} style={style} />
+       </Link>
       </div>
     )
   }

@@ -2,7 +2,8 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
-
+import styles from './BatchPage.sass'
+import style from './BatchPage.sass'
 import fetchBatches from '../../actions/batches/fetch'
 import {GridList, GridTile} from 'material-ui/GridList';
 import IconButton from 'material-ui/IconButton';
@@ -10,22 +11,7 @@ import Subheader from 'material-ui/Subheader';
 import StarBorder from 'material-ui/svg-icons/toggle/star-border';
 import RaisedButton from 'material-ui/RaisedButton';
 
-const style = {
-  margin: 12,
-};
 
-const styles = {
-  root: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'space-around',
-  },
-  gridList: {
-    width: 500,
-    height: 450,
-    overflowY: 'auto',
-  },
-};
 
 class BatchesItem extends PureComponent {
 
@@ -37,7 +23,7 @@ class BatchesItem extends PureComponent {
 
 
    getRandomStudentId(students) {
-    var random = Math.random() * 100;
+    var random = Math.floor(Math.random()) * 100;
     var get_color_group =  students.filter(function(student){
         if (random <= 17) {return student.evaluations.slice(-1)[0].color === "green" };
         if (random > 17 && random <= 50) {return student.evaluations.slice(-1)[0].color === "yellow" };
@@ -46,8 +32,14 @@ class BatchesItem extends PureComponent {
     return (get_color_group[Math.floor(Math.random() * get_color_group.length)]._id);
     }
 
+  getFormattedDate(date) {
+  var getDate = date.slice(0, 10).split('-')
+  return getDate[2] + '/' + getDate[1] + '/' + getDate[0];
+
+}
+
   render() {
-    const { name, students, _id } = this.props
+    const { name, students, _id, startsAt, endsAt } = this.props
     if (!name) return null
     const randomStudentId = this.getRandomStudentId(students)
 
@@ -59,6 +51,8 @@ class BatchesItem extends PureComponent {
             style={styles.gridList}
           >
             <Subheader>{ name }</Subheader>
+            <Subheader>Start date: { this.getFormattedDate(startsAt) }</Subheader>
+            <Subheader>End date: { this.getFormattedDate(endsAt) }</Subheader>
             {students.map((student) => (
             <GridTile
               key={student.photo}

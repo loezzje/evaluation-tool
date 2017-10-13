@@ -14,6 +14,7 @@ export default (state = [], { type, payload } = {}) => {
      case FETCHED_STUDENTS :
       return [].concat(payload)
 
+
   default :
   return state
   }
