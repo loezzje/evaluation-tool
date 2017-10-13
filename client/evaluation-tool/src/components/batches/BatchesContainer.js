@@ -6,6 +6,8 @@ import BatchItem from './BatchItem'
 import RaisedButton from 'material-ui/RaisedButton';
 import style from './BatchesContainer.sass'
 import { Link } from 'react-router'
+import {List} from 'material-ui/List';
+
 
 
 export class BatchesContainer extends PureComponent {
@@ -28,9 +30,9 @@ export class BatchesContainer extends PureComponent {
 
     return(
       <div className="batch wrapper">
-        <main>
+        <List>
           {this.props.batches.map(this.renderBatches.bind(this))}
-      </main>
+      </List>
       <Link to={`/new-batch`}>
        <RaisedButton label="Create new Batch" primary={true} style={style} />
        </Link>

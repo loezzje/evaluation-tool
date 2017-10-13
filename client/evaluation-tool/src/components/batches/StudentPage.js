@@ -46,9 +46,7 @@ class StudentPage extends PureComponent {
     return(
       <div>
       <Card>
-        <CardHeader
-          title="URL Avatar"
-          subtitle="Subtitle"
+        <CardHeader          
           avatar={photo}
         />
         <CardTitle title={studentName} subtitle={evaluations.slice(-1)[0].color} />

@@ -1,5 +1,4 @@
 import React, { PureComponent } from 'react'
-import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { Link } from 'react-router'
 import styles from './BatchPage.sass'
@@ -33,10 +32,9 @@ class BatchesItem extends PureComponent {
     }
 
   getFormattedDate(date) {
-  var getDate = date.slice(0, 10).split('-')
-  return getDate[2] + '/' + getDate[1] + '/' + getDate[0];
-
-}
+    var getDate = date.slice(0, 10).split('-')
+    return getDate[2] + '/' + getDate[1] + '/' + getDate[0];
+  }
 
   render() {
     const { name, students, _id, startsAt, endsAt } = this.props
