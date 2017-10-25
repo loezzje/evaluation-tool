@@ -9,7 +9,7 @@ The practise goal is to put an algorythm into syntax and use it in a full stack 
 
 ### Steps to take:
  
-..* fix authorization
-..* Edit, create and delete students
-..* optional: move algorythm to backend, or make it part of an onClick event
+*fix authorization
+*Edit, create and delete students
+*optional: move algorythm to backend, or make it part of an onClick event
 
